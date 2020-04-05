@@ -230,6 +230,8 @@
 
     </footer>
     <script>
+        
+
         document.addEventListener("DOMContentLoaded", function() {
   let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
   let active = false;
@@ -265,6 +267,7 @@
   window.addEventListener("resize", lazyLoad);
   window.addEventListener("orientationchange", lazyLoad);
 });
+window.scrollTo(0,1);
 
     </script>
     <script

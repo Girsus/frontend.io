@@ -1,16 +1,5 @@
 $( document ).ready(function() {
-    $('.communication_but, .contact_me>button').on('click', function(e) {
-        $('body').addClass('dark_body');
-        $(".container_form").fadeIn();
-        $('body').addClass('stop-scrolling');
-        $('body').bind('touchmove', function(e){e.preventDefault()});
-    });
-    $('.close_form').on('click', function(e) {
-        $(".container_form").fadeOut();
-        $('body').removeClass('dark_body');
-        $('body').unbind('touchmove');
-        $('body').removeClass('stop-scrolling');
-    });
+   
     $('.menu-btn').on('click', function(e) {
         e.preventDefault;
         $(this).toggleClass('menu-btn_active');
@@ -18,17 +7,20 @@ $( document ).ready(function() {
       });
 
     scrollSpy();
+    if($(window).width > 500){
     var canonHeight = $('.about_me').height(),
     windowH = $( window ).height();
-
     if(canonHeight<windowH) $('.about_me').css('height',windowH);
+    }
     
 
     $( window ).resize(function() {
+        if($(window).width > 500){
         if(canonHeight<windowH) $('.about_me').css('height',windowH);
         else{
             $('.about_me').css('height',canonHeight);
         }
+    }
     });
 
 	$(".menu-nav").on("click","a", function (event) {

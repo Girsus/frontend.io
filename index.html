@@ -47,7 +47,7 @@
 
     <main>
         <section class="container about_me" id="about">
-            <div class="me_img"> <img src="/img/workspace.JPG" alt="My workspace"></div>
+            <div class="me_img"> <img  src="/img/workspace.JPG" alt="My workspace"></div>
 
             <div class="about_me_text">
                 <h1 class="title_section">Я front end разработчик</h1>
@@ -75,7 +75,7 @@
                             <span class="title">royalpool.services</span>
                         </div>
 
-                        <img src="/img/royalpool.png" alt="Royalpool Services">
+                        <img class="lazy" data-src="/img/royalpool.png" alt="Royalpool Services">
                     </div>
                 </a>
 
@@ -99,7 +99,7 @@
                             <span class="title">ibnet.ua</span>
                         </div>
 
-                        <img src="/img/Ibnet.png" alt="ibnet">
+                        <img class="lazy" data-src="/img/Ibnet.png" alt="ibnet">
                     </div>
                 </a>
 
@@ -123,7 +123,7 @@
                             <span class="title">vibronicafestival.com</span>
                         </div>
 
-                        <img src="/img/vibronica.png" alt="VIBRONICA 2020. STARDUST.">
+                        <img class="lazy" data-src="/img/vibronica.png" alt="VIBRONICA 2020. STARDUST.">
                     </div>
                 </a>
 
@@ -147,7 +147,7 @@
                             <span class="title">dovzhenkofilm.com.ua</span>
                         </div>
 
-                        <img src="/img/Dovzhenko.png" alt="National film studio Oleksandr Dovzhenko">
+                        <img class="lazy" data-src="/img/Dovzhenko.png" alt="National film studio Oleksandr Dovzhenko">
                     </div>
                 </a>
 
@@ -170,7 +170,7 @@
                             <span class="title">adventureua.com</span>
                         </div>
 
-                        <img src="/img/adventureua.png" alt="Adventure Tours">
+                        <img class="lazy" data-src="/img/adventureua.png" alt="Adventure Tours">
                     </div>
                 </a>
 
@@ -195,7 +195,7 @@
                             <span class="title">ukraine-dmc.com</span>
                         </div>
 
-                        <img src="/img/DMC.png" alt="Travel Destination Ukraine”">
+                        <img class="lazy" data-src="/img/DMC.png" alt="Travel Destination Ukraine”">
                     </div>
                 </a>
 
@@ -210,7 +210,7 @@
             <h4 class="title_section">Отзывы моих клиентов</h4>
             <div class="review_container">
                 <article class="review_item">
-                    <img src="/img/review1.png" alt="review1">
+                    <img class="lazy" data-src="/img/review1.png" alt="review1">
                 </article>
             </div>
 
@@ -229,7 +229,44 @@
         <p class="copy">© Copyright 2020. All rights reserved.</p>
 
     </footer>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+  let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+  let active = false;
+
+  const lazyLoad = function() {
+    if (active === false) {
+      active = true;
+
+      setTimeout(function() {
+        lazyImages.forEach(function(lazyImage) {
+          if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.classList.remove("lazy");
+
+            lazyImages = lazyImages.filter(function(image) {
+              return image !== lazyImage;
+            });
+
+            if (lazyImages.length === 0) {
+              document.removeEventListener("scroll", lazyLoad);
+              window.removeEventListener("resize", lazyLoad);
+              window.removeEventListener("orientationchange", lazyLoad);
+            }
+          }
+        });
+
+        active = false;
+      }, 200);
+    }
+  };
+
+  document.addEventListener("scroll", lazyLoad);
+  window.addEventListener("resize", lazyLoad);
+  window.addEventListener("orientationchange", lazyLoad);
+});
+
+    </script>
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

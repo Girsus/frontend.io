@@ -40,6 +40,9 @@
     }
 }
 @media screen and (max-width: 587px){
+    .my_works_item img{
+        height: 181px;
+    }
     .communication_but{
         display: none;
     }

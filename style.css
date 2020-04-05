@@ -450,7 +450,7 @@ main{
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .2));
     object-fit: contain;
     height: 450px;
-    width: auto;
+    width: 253px;
     margin: 0 auto;
     -webkit-filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .2));
 }
